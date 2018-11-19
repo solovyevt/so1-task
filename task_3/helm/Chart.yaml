@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Helm Chart for docker-mysql-spring-boot-example
+name: spring-boot-example
+version: 0.1.0

@@ -1,0 +1,17 @@
+replicaCount: 3
+image:
+  repository: registry.gitlab.com/zukokolkka/docker-mysql-spring-boot-example
+  tag: test
+  pullPolicy: Always
+service:
+  name: spring-boot-example
+  type: NodePort
+  externalPort: 30808
+  internalPort: 8086
+resources:
+  limits:
+    cpu: 100m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
