@@ -45,7 +45,6 @@ def curlTest (namespace, out) {
             out = 'http_code'
         }
 
-        // Get deployment's service IP
         def svc_ip = sh (
                 returnStdout: true,
                 script: "kubectl get svc -n ${namespace} | grep ${ID} | awk '{print \$3}'"
@@ -78,12 +77,12 @@ pipeline {
     parameters {
         string (name: 'GIT_BRANCH',           defaultValue: 'develop',  description: 'Git branch to build')
         booleanParam (name: 'DEPLOY_TO_PROD', defaultValue: false,     description: 'Deploy production without approval')
-
         string (name: 'BUILD_DIR',       defaultValue: '.',          description: 'Docker registry')
         string (name: 'DOCKER_REG',       defaultValue: 'registry.gitlab.com',          description: 'Docker registry')
         string (name: 'DOCKER_REPO',       defaultValue: 'zukokolkka',          description: 'Docker registry')
         string (name: 'DOCKER_TAG',       defaultValue: 'dev',                                     description: 'Docker tag')
         string (name: 'DOCKER_USR',       defaultValue: 'zukokolkka',                              description: 'Your docker repository user')
+        // Temporary API token
         string (name: 'DOCKER_PSW',       defaultValue: 'BWu3vLArAu4TVETs_EqE',                    description: 'Your docker repository password')
     }
     agent { node { label 'master' } }
